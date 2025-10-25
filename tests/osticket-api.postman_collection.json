@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "414630cf-463b-4635-9e1b-2b429c9ef382",
+		"name": "osTicket API",
+		"description": "Postman collection for testing osTicket API (v1/tickets.php)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29775675"
+	},
+	"item": [
+		{
+			"name": "List Tickets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/tickets.php?page=1&per_page=5",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"tickets.php"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Tickets (Filter by ID)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/tickets.php?id=1",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"tickets.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-API-Key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"API User\",\n  \"subject\": \"Example Ticket from API\",\n  \"message\": \"This is a test ticket created via API.\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/tickets.php",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"tickets.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Ticket",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-API-Key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"status_id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/tickets.php?id={{TICKET_ID}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"tickets.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{TICKET_ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ticket",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "{{API_KEY}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/tickets.php?id={{TICKET_ID}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"tickets.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{TICKET_ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost/osticket/api/v1"
+		},
+		{
+			"key": "API_KEY",
+			"value": "YOUR_API_KEY_HERE"
+		},
+		{
+			"key": "TICKET_ID",
+			"value": "1"
+		}
+	]
+}
