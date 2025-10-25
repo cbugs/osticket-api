@@ -49,6 +49,7 @@ try {
             if (!empty($_GET['dept_id'])) $tickets->filter(['dept_id' => (int)$_GET['dept_id']]);
             if (!empty($_GET['q'])) $tickets->filter(['cdata__subject__contains' => $_GET['q']]);
             if (!empty($_GET['email'])) $tickets->filter(['user__emails__address' => $_GET['email']]);
+            if (!empty($_GET['topic_id'])) $tickets->filter(['topic_id' => (int)$_GET['topic_id']]);
 
             $total = $tickets->count();
             $tickets = $tickets->limit($per_page)->offset($offset);
@@ -113,6 +114,7 @@ try {
                 'message' => $body['message'],
                 'ip' => $_SERVER['REMOTE_ADDR'],
                 'source' => 'API',
+                'topicId' => $body['topic_id'] ?? null, 
             ], $errors, 'API');
 
             if (!$ticket) {
@@ -141,6 +143,7 @@ try {
 
             foreach ([
                 'status_id' => 'setStatusId',
+                'topic_id' => 'setTopicId'
             ] as $field => $setter) {
                 if (isset($body[$field]) && method_exists($ticket, $setter)) {
                     $ticket->$setter($body[$field]);

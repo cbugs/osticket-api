@@ -90,6 +90,7 @@ Optional filters:
 | `status_id` | Filter by status             |
 | `dept_id`   | Filter by department ID      |
 | `email`     | Filter by user email address |
+| `topic_id`  | Filter by help topic         |
 | `q`         | Search in ticket subject     |
 
 **Response Example:**
@@ -150,7 +151,8 @@ Body example:
   "email": "user@example.com",
   "name": "John Doe",
   "subject": "Printer issue",
-  "message": "The office printer is offline."
+  "message": "The office printer is offline.",
+  "topic_id": 1
 }
 ```
 
@@ -166,7 +168,8 @@ Body example:
 
 ```json
 {
-  "status_id": 2
+  "status_id": 2,
+  "topic_id": 2
 }
 ```
 
